@@ -1,0 +1,245 @@
+:root {
+  --color-cream: #fbf3e3;
+  --color-green-dark: #284834;
+  --color-green-darker: #1c3526;
+  --color-rust: #c15e2f;
+  --color-orange: #de9052;
+  --color-sage: #99a394;
+  --color-dusty-rose: #d59879;
+  --color-tan-light: #e6be93;
+  --color-beige: #d5c8b4;
+  --color-white: #ffffff;
+
+  --font-display: 'Poppins', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ---------- Panel de marca (izquierda) ---------- */
+.brand {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--color-green-dark) 0%, var(--color-green-darker) 100%);
+  color: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.brand::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 55%, rgba(222, 144, 82, 0.12) 100%);
+  pointer-events: none;
+}
+
+/* --- Burbujas --- */
+.bubbles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(222, 144, 82, 0.5), rgba(213, 152, 121, 0.15) 70%, transparent 75%);
+  filter: blur(1px);
+  animation-name: float-up;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+}
+
+.b1 { left: 8%;  width: 60px;  height: 60px;  animation-duration: 14s; animation-delay: 0s; }
+.b2 { left: 22%; width: 34px;  height: 34px;  animation-duration: 10s; animation-delay: 2s; }
+.b3 { left: 38%; width: 90px;  height: 90px;  animation-duration: 18s; animation-delay: 1s; }
+.b4 { left: 55%; width: 46px;  height: 46px;  animation-duration: 12s; animation-delay: 4s; }
+.b5 { left: 70%; width: 70px;  height: 70px;  animation-duration: 16s; animation-delay: 3s; }
+.b6 { left: 84%; width: 30px;  height: 30px;  animation-duration: 9s;  animation-delay: 1.5s; }
+.b7 { left: 62%; width: 110px; height: 110px; animation-duration: 20s; animation-delay: 5s; }
+
+@keyframes float-up {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(-720px) translateX(24px); opacity: 0; }
+}
+
+.brand-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.logo-backdrop {
+  width: 220px;
+  height: 220px;
+  background: var(--color-cream);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: rgba(251, 243, 227, 0.85);
+  max-width: 26ch;
+}
+
+/* ---------- Panel derecho (mensaje de sesión caducada) ---------- */
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--color-cream);
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fade-in-up 0.5s ease both;
+}
+
+/* Ícono de "reloj/alerta" decorativo, opcional, encima del título */
+.card-header::before {
+  content: '⏱';
+  display: block;
+  font-size: 2.5rem;
+  margin: 0 auto 1rem;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  border-radius: 50%;
+  background: rgba(222, 144, 82, 0.15);
+  color: var(--color-rust);
+}
+
+.card-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-green-dark);
+}
+
+.card-header p {
+  margin: 0 0 2rem;
+  color: var(--color-sage);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+button[type='button'] {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-white);
+  background: linear-gradient(135deg, var(--color-orange), var(--color-rust));
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(193, 94, 47, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+button[type='button']:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(193, 94, 47, 0.4);
+  background: linear-gradient(135deg, var(--color-rust), var(--color-orange));
+}
+
+button[type='button']:active {
+  transform: translateY(0);
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Responsive: Tablet ---------- */
+@media (max-width: 860px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .brand {
+    padding: 2.5rem 2rem;
+    min-height: 260px;
+  }
+  .logo-backdrop {
+    width: 160px;
+    height: 160px;
+  }
+  .logo {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* ---------- Responsive: Móvil ---------- */
+@media (max-width: 480px) {
+  .brand {
+    padding: 2rem 1.25rem;
+    min-height: 220px;
+  }
+  .logo-backdrop {
+    width: 120px;
+    height: 120px;
+  }
+  .logo {
+    width: 85px;
+    height: 85px;
+  }
+  .tagline {
+    font-size: 0.95rem;
+  }
+  .panel {
+    padding: 1.5rem 1.25rem;
+  }
+  .card-header h2 {
+    font-size: 1.5rem;
+  }
+  .card-header::before {
+    font-size: 2rem;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+  }
+  button[type='button'] {
+    padding: 0.8rem;
+  }
+}
